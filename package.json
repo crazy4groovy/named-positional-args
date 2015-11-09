@@ -1,0 +1,30 @@
+{
+  "name": "named-positional-args",
+  "version": "0.1.0",
+  "description": "support API args as both named and positional",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crazy4groovy/named-positional-args.git"
+  },
+  "keywords": [
+    "api",
+    "args",
+    "params",
+    "named",
+    "positional",
+    "signature"
+  ],
+  "author": "Steven Olsen @crazy4groovy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crazy4groovy/named-positional-args/issues"
+  },
+  "homepage": "https://github.com/crazy4groovy/named-positional-args#readme",
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  }
+}
