@@ -22,7 +22,7 @@ You implement this util like:
 
 ```js
 function makeIntoGold (a, b, c) {
-  arguments = namedParams.apply(makeGold, arguments);
+  arguments = namedParams.apply(makeIntoGold, arguments);
   a = arguments[0]; b = arguments[1]; c = arguments[2];
  
   //rest of code...
@@ -33,7 +33,7 @@ even better with [ES6 destructuring](https://babeljs.io/docs/learn-es2015/#destr
 
 ```js
 function makeIntoGold (a, b, c) {
-  [a, b, c] = namedParams.apply(makeGold, arguments);
+  [a, b, c] = namedParams.apply(makeIntoGold, arguments);
 
   //rest of code...
 }
