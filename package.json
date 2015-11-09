@@ -1,6 +1,6 @@
 {
   "name": "named-positional-args",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "support API args as both named and positional",
   "main": "src/index.js",
   "scripts": {
