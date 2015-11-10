@@ -87,11 +87,12 @@ describe('namedPositionalArgs', function() {
 			assert.ok(testIt('a1', 0, 'c1'));
 		});
 	});
-	describe('arg value - require', function () {
+	describe('arg value - require/demand', function () {
 		function testIt(a, b, c) {
 			var ret = namedPositionalArgs
 				.apply(testIt, arguments)
 				.require('b', 'positive integer')
+				.demand('c', 'non-empty string')
 				.args();
 			a = ret[0]; b = ret[1]; c = ret[2];
 

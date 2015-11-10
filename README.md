@@ -68,7 +68,7 @@ __Warning:__ If you compress/mangle your code, this may break it!! (since the fu
 
 `.coerce()` : see [coerce](https://www.npmjs.com/package/named-parameters#coercing-types)
 
-`.require()` : see [require](https://www.npmjs.com/package/named-parameters#validating-parameters)
+`.require()` : see [require](https://www.npmjs.com/package/named-parameters#validating-parameters) (alias: `.demand()`)
 
 `.args()` : Returns an Array akin to `arguments`.
 

@@ -51,6 +51,7 @@ namedPositionalArgs.require = function _require () {
 	parsed = parsed.require.apply(parsed, arguments);
 	return namedPositionalArgs;
 }
+namedPositionalArgs.demand = namedPositionalArgs.require;
 
 namedPositionalArgs.args = function _values () {
 	var params = parsed.values();
