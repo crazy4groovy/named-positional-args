@@ -1,19 +1,14 @@
 'use strict';
 var np = require('named-parameters');
 
-var argNamesList = [],
-	namedArgs = {},
-	arg0,
-	parsed;
-
 function namedPositionalArgs() {
 	var functionArgsRegex = /^function\s*[^\(]*\(\s*([^\)]*)\)/m,
 		func = this,
 		funcArgsPart = func.toString().match(functionArgsRegex)[1];
 
-	argNamesList = funcArgsPart.split(',').map( function (arg) { return arg.trim() });
-	arg0 = arguments.length === 1 && arguments[0];
-	namedArgs = {};
+	var argNamesList = funcArgsPart.split(',').map( function (arg) { return arg.trim() }),
+		arg0 = arguments.length === 1 && arguments[0],
+		namedArgs = {};
 
 	if (arg0
 		&& typeof arg0 === "object"
@@ -32,39 +27,22 @@ function namedPositionalArgs() {
 		}
 	}
 
-	parsed = np.parse(namedArgs);
+	var parsed = np.parse(namedArgs);
 
-	return namedPositionalArgs;
-}
+	parsed.args = function _args () {
+		var params = parsed.values();
+		var vals = [];
+		for (var i = 0, len = argNamesList.length; i < len; i++) {
+			var key = argNamesList[i];
+			vals[i] = params[key];
+		}
+		return vals;
+	};
+	parsed.opts = function _opts () {
+		return parsed.values();
+	};
 
-namedPositionalArgs.default = function _default () {
-	parsed = parsed.default.apply(parsed, arguments);
-	return namedPositionalArgs;
-}
-
-namedPositionalArgs.coerce = function _coerce () {
-	parsed = parsed.coerce.apply(parsed, arguments);
-	return namedPositionalArgs;
-}
-
-namedPositionalArgs.require = function _require () {
-	parsed = parsed.require.apply(parsed, arguments);
-	return namedPositionalArgs;
-}
-namedPositionalArgs.demand = namedPositionalArgs.require;
-
-namedPositionalArgs.args = function _values () {
-	var params = parsed.values();
-	var vals = [];
-	for (var i = 0, len = argNamesList.length; i < len; i++) {
-		var key = argNamesList[i];
-		vals[i] = params[key];
-	}
-	return vals;
-}
-
-namedPositionalArgs.opts = function _opts () {
-	return parsed.values();
+	return parsed;
 }
 
 if (module && module.exports) {
