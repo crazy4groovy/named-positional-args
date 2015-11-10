@@ -1,6 +1,6 @@
 {
   "name": "named-positional-args",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "API support for args as both named and positional.",
   "main": "src/index.js",
   "scripts": {
@@ -26,5 +26,8 @@
   "homepage": "https://github.com/crazy4groovy/named-positional-args#readme",
   "devDependencies": {
     "mocha": "^2.3.3"
+  },
+  "dependencies": {
+    "named-parameters": "0.0.3"
   }
 }
