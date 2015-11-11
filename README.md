@@ -1,3 +1,5 @@
+[![Travis](https://img.shields.io/travis/crazy4groovy/named-positional-args.svg)](https://travis-ci.org/crazy4groovy/named-positional-args)
+
 # named-positional-args
 
 API support for arguments as both named and positional.
