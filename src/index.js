@@ -4,7 +4,13 @@ var np = require('named-parameters');
 function namedPositionalArgs() {
 	var functionArgsRegex = /^function\s*[^\(]*\(\s*([^\)]*)\)/m,
 		func = this,
-		funcArgsPart = func.toString().match(functionArgsRegex)[1];
+		funcArgsPart;
+
+		if ('string' === typeof func) {
+			funcArgsPart = func;
+		} else {
+			funcArgsPart = func.toString().match(functionArgsRegex)[1];
+		}
 
 	var argNamesList = funcArgsPart.split(',').map( function (arg) { return arg.trim() }),
 		arg0 = arguments.length === 1 && arguments[0],

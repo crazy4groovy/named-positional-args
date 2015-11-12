@@ -47,7 +47,7 @@ function makeIntoGold(a, b, c) {
 ```js
 function makeIntoGold(a, b, c) {
   [a, b, c] = 
-	namedPositionalArgs
+    namedPositionalArgs
     .apply(makeIntoGold, arguments)
     .default('a', 999)
     .coerce('b', 'boolean')
@@ -60,11 +60,26 @@ function makeIntoGold(a, b, c) {
 
 __Note:__ This is obviously silly to use for functions which only take a single `{}` object param anyways! ;)
 
-__Warning:__ If you compress/mangle your code, this may break it!! (since the function arg names could no longer align as expected).
+__Warning:__ If you compress/mangle your code, this way might break it!! (since the function arg names might no longer align internally as expected). To avoid this limitation, you can instead use a `csvArgs` string:
+
+```js
+function makeIntoGold(a, b, c) { // these can get mangled now!
+  [a, b, c] =
+    namedPositionalArgs
+    .apply('a, b, c', arguments) // these are the cannonical arg names
+    .args();
+
+  //rest of code...
+}
+```
 
 ## API
 
-`.apply(funcName, arguments)` : Starts the argument parsing chain.
+- `.apply(funcName:Function, arguments)` : Starts the argument parsing chain.
+
+-or-
+
+- `.apply(csvArgs:String, arguments)` : Starts the argument parsing chain.
 
 `.default()` : see [default](https://www.npmjs.com/package/named-parameters#specifying-default-values)
 
@@ -72,9 +87,9 @@ __Warning:__ If you compress/mangle your code, this may break it!! (since the fu
 
 `.require()` : see [require](https://www.npmjs.com/package/named-parameters#validating-parameters) (alias: `.demand()`)
 
-`.args()` : Returns an Array akin to `arguments`.
+`.args()` : Returns an `Array` akin to `arguments`.
 
-`.opts()` : Returns an Object with `arguments` data as `name:value` pairs. 
+`.opts()` : Returns an `Object` with `arguments` as `name: value` pairs. 
 
 ## Test
 

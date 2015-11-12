@@ -121,4 +121,29 @@ describe('namedPositionalArgs', function() {
 			});
 		});
 	});
+	describe('mangled/compressed function args', function () {
+		function testIt(a, b, c) { // these got mangled oh my!!
+			var ret = namedPositionalArgs
+				.apply('x, y, z', arguments) // these were the original args!
+				.args();
+			a = ret[0]; b = ret[1]; c = ret[2];
+
+			if (a !== 'a1' || b !== 'b1' || c !== 'c1') // these are the expected values
+				throw new Error(`incorrect params detected! ${ret}`);
+
+			return true;
+		}
+
+		it('should find/map all args as expected for named args', function () {
+			assert.ok(testIt({z: 'c1', x: 'a1', y: 'b1'}));  //x, y, z
+		});
+		it('should find/map all args as expected for positional args', function () {
+			assert.ok(testIt('a1', 'b1', 'c1')); //positional still OK
+		});
+		it('should throw for named args', function () {
+			assert.throws(function () {
+				testIt({c: 'c1', a: 'a1', b: 'b1'});
+			});
+		});
+	});
 });
